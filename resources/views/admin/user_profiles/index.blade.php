@@ -61,7 +61,7 @@
 									<td>
 										<div class="align-top">
 											<a class="btn btn-sm btn-success badge" href="{{ url('user_profiles/'.$user->id) }}/edit" type="button"><i class="fa fa-pencil"></i></a>
-											<button class="btn btn-sm btn-primary badge" data-target="#user-form-modal" data-toggle="modal" type="button"><i class="fa fa-eye"></i></button>
+											<a class="btn btn-sm btn-success badge" href="{{ url('user_profiles/'.$user->id) }}/show" type="button"><i class="fa fa-eye"></i></a>
 											<button class="btn btn-sm btn-danger badge" type="button"><i class="fa fa-trash"></i></button>
 										</div>
 									</td>

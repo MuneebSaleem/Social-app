@@ -19,7 +19,7 @@ class UserProfileController extends Controller
         // $products = UserProfile::latest()->paginate(5);
         // return view('products.index',compact('products'))->with('i', (request()->input('page', 1) - 1) * 5);
 
-        $data['user_profiles'] = UserProfile::latest()->where('status',1)->paginate(5);
+        $data['user_profiles'] = UserProfile::latest()->paginate(5);
         //dd($data['user_profiles']);
         return view('admin.user_profiles.index', $data);
     }
@@ -108,7 +108,7 @@ class UserProfileController extends Controller
      */
     public function show(UserProfile $userProfile)
     {
-        //
+        return view('admin.user_profiles.show',compact('userProfile'));
     }
 
     /**
@@ -131,7 +131,47 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, UserProfile $userProfile)
     {
-        //
+         $request->validate([
+            'firstname' => 'required|min:3|regex:/^[a-zA-Z0-9 ]+$/',
+            'lastname' => 'required|min:3|regex:/^[a-zA-Z0-9 ]+$/',
+            //'email' => 'required|email|unique:user_profiles,email',
+            'phonenumber' => 'required|min:11|numeric',
+            'username' => 'required|min:3|regex:/^[a-zA-Z0-9 ]+$/',
+            'about' => 'required|min:3',
+            'country_id' => 'required',
+            'province_id' => 'required',
+            'experience_id' => 'required',
+            'profile_image' => 'image|mimes:jpeg,png,jpg',
+        ]);
+  
+        $input = $request->all();
+  
+        if ($image = $request->file('profile_image')) {
+            $destinationPath = 'upload/user_profile_image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['profile_image'] = "$profileImage";
+        }else{
+            unset($input['profile_image']);
+        }
+
+        $input['firstname'] = trim($request->get('firstname'));
+        $input['lastname'] = trim($request->get('lastname'));
+        $input['email'] = trim($request->get('email'));
+        $input['password'] = trim(bcrypt($request->get('password'))); 
+        $input['phonenumber'] = trim($request->get('phonenumber'));
+        $input['username'] = trim($request->get('username'));
+        $input['about'] = trim($request->get('about'));
+        //$input['role_id'] = trim($request->get('role_id'));
+        $input['country_id'] = trim($request->get('country_id'));
+        $input['province_id'] = trim($request->get('province_id'));
+        $input['experience_id'] = trim($request->get('experience_id'));
+        $input['status'] = trim($request->get('status'));
+        
+        $userProfile->update($input);
+    
+        return redirect()->route('user_profiles.index')
+                        ->with('success','User updated successfully');
     }
 
     /**

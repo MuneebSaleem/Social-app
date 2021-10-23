@@ -23535,7 +23535,8 @@ font-size: 10px;
 	position: relative;
 }
 .userprofile .userpic .userpicimg {
-	height: auto;
+	/*height: auto;*/
+	height: 100%;
 	width: 100%;
 	border-radius: 100%;
 }

@@ -1,5 +1,5 @@
 @extends('admin/layouts/default')
-@section('title') Add New User @endsection
+@section('title') Edit User @endsection
 @section('style_files')
 
 
@@ -33,14 +33,14 @@
 				<div class="card-header">
 					<h3 class="card-title">My Profile</h3>
 					<div class="card-options">
-						<a href="profile.html" class="btn btn-primary btn-sm"><i class="si si-eye mr-1"></i>View Profile</a>
+						<a href="#" class="btn btn-primary btn-sm"><i class="si si-pencil mr-1"></i>Change Password</a>
 					</div>
 				</div>
 				<div class="card-body">
 					<div class="text-center">
 						<div class="userprofile ">
-							<div class="userpic  brround"> <img src="../assets/images/users/female/5.jpg" alt="" class="userpicimg"> </div>
-							<h3 class="username mb-2">Alison</h3>
+							<div class="userpic  brround"> <img src="/upload/user_profile_image/{{$userProfile->profile_image}}" alt="" class="userpicimg"> </div>
+							<h3 class="username mb-2">{{$userProfile->username}}</h3>
 							<p class="mb-1">Web Designer, Uk</p>
 							<div class="text-center mb-4">
 								<span><i class="fa fa-star text-warning"></i></span>
@@ -82,7 +82,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="col-lg-12 col-xl-8 col-md-12 col-sm-12">
 			@if ($errors->any())
 			 @foreach ($errors->all() as $error)
@@ -95,123 +94,119 @@
 				<div class="card-header">
 				    <h3 class="card-title">Add Profile</h3>
 				</div>
-				<form action="{{ route('user_profiles.store') }}" method="POST" id="user_profile_form" enctype="multipart/form-data">
+				<form action="{{ route('user_profiles.update',$userProfile->id) }}"
+				 method="POST" id="user_profile_form" enctype="multipart/form-data">
 				@csrf
+				@method('PUT')
 					<div class="card-body">
 						<div class="row">
-							<div class="col-lg-3 col-md-12">
+							<div class="col-lg-4 col-md-12">
 								<div class="form-group">
 									<label for="firstname">First Name</label>
-									<input type="text" class="form-control" id="firstname" placeholder="First Name" name="firstname">
+									<input type="text" class="form-control" id="firstname" placeholder="First Name" name="firstname" value="{{$userProfile->firstname}}">
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-12">
+							<div class="col-lg-4 col-md-12">
 								<div class="form-group">
 									<label for="lastname">Last Name</label>
-									<input type="text" class="form-control" id="lastname" placeholder="Last Name" name="lastname">
+									<input type="text" class="form-control" id="lastname" placeholder="Last Name" name="lastname" value="{{$userProfile->lastname}}">
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-12">
+							<div class="col-lg-4 col-md-12">
 								<div class="form-group">
 									<label for="username">User Name</label>
-									<input type="text" class="form-control" id="username" placeholder="User Name" name="username">
+									<input type="text" class="form-control" id="username" placeholder="User Name" name="username" value="{{$userProfile->username}}">
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-12">
+							
+						</div>
+
+						<div class="row">
+							<div class="col-lg-4 col-md-12">
 								<div class="form-group">
 									<label for="email">Email address</label>
-									<input type="text" class="form-control" id="email" placeholder="Enter Email Address" name="email">
+									<input type="text" class="form-control" id="email" placeholder="Enter Email Address" name="email" value="{{$userProfile->email}}">
 								</div>
 							</div>
-						</div>
 
-
-						<div class="row">
-							<div class="col-lg-3 col-md-12">
-								<div class="form-group">
-									<label for="password">Password</label>
-									<input type="password" class="form-control" id="password" placeholder="Enter Password" name="password">
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-12">
-								<div class="form-group">
-									<label for="confirm_password">Confirm Password</label>
-									<input type="password" class="form-control" id="confirm_password" placeholder="Enter confirm password" name="confirm_password">
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-12">
+							<div class="col-lg-4 col-md-12">
 								<div class="form-group">
 									<label for="phonenumber">Phone Number</label>
-									<input type="text" class="form-control" id="phonenumber" placeholder="Phone Number" name="phonenumber">
+									<input type="text" class="form-control" id="phonenumber" placeholder="Phone Number" name="phonenumber" value="{{$userProfile->phonenumber}}">
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-12">
+
+							<div class="col-lg-4 col-md-12">
 								<div class="form-group">
-									<label for="role_id">Role</label>
-									<select id="role_id" class="form-control" name="role_id">
-										<option value="1">Admin</option>
-										<option value="2">User</option>
-										<option value="3">Mentor</option>
-									</select>
+									<div class="form-label">Profile Image</div>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" name="profile_image" id="profile_image" value="{{$userProfile->profile_image}}">
+										<label for="profile_image" class="custom-file-label">Choose Profile</label>
+									</div>
+									<a href="/upload/user_profile_image/{{$userProfile->profile_image}}" target="_blank">View Profile Image</a>
 								</div>
-							</div>
+							</div>	
+
 						</div>
 
 						<div class="row">
-							<div class="col-lg-3 col-md-12">
+							<div class="col-lg-6 col-md-12">
 								<div class="form-group">
 									<label for="country_id">Country</label>
 									<select class="form-control" name="country_id" id="country_id">
+										<option selected value="{{$userProfile->country_id}}">{{$userProfile->country_id}}</option>
 										<option value="1">Pakistan</option>
 										<option value="2">USA</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-12">
+							<div class="col-lg-6 col-md-12">
 								<div class="form-group">
 									<label for="province_id">Province</label>
 									<select class="form-control" name="province_id" id="province_id">
+										<option selected value="{{$userProfile->province_id}}">{{$userProfile->province_id}}</option>
 										<option value="1">Karachi</option>
 										<option value="2">Islamabad</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-12">
+						</div>	
+						<div class="row">
+							<div class="col-lg-6 col-md-12">
 								<div class="form-group">
 									<label for="experience_id">Experience</label>
 									<select class="form-control" name="experience_id" id="experience_id">
+										<option selected value="{{$userProfile->experience_id}}">{{$userProfile->experience_id}}</option>
 										<option value="1">0-1</option>
 										<option value="2">1-3</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-12">
+							<div class="col-lg-6 col-md-12">
 								<div class="form-group">
-									<div class="form-label">Profile Image</div>
-									<div class="custom-file">
-										<input type="file" class="custom-file-input" name="profile_image" id="profile_image">
-										<label for="profile_image" class="custom-file-label">Choose Profile</label>
-									</div>
+									<label for="status">Status</label>
+									<select class="form-control" name="status" id="status">
+										<option selected value="{{$userProfile->status }}">{{$userProfile->status==1 ? 'Active' : 'In-Active'  }}</option>
+										<option value="1">Active</option>
+										<option value="0">In-Active</option>
+									</select>
 								</div>
-							</div>	
+							</div>
 						</div>	
 
 						<div class="row">
 							<div class="col-lg-12 col-md-12">
 								<div class="form-group">
 									<label for="about">About Me</label>
-									<textarea class="form-control" rows="3" name="about" id="about"></textarea>
+									<textarea class="form-control" rows="3" name="about" id="about">{{$userProfile->about}}</textarea>
 								</div>
 							</div>
 						</div>	
 					</div>
 					<div class="card-footer text-right">
 						<button type="submit" class="btn btn-app btn-success mr-2 mt-1 mb-1">
-							<i class="fa fa-check-circle"></i> Submit
+							<i class="fa fa-check-circle"></i> Update
 						</button>
-						<a class="btn btn-app btn-gray mr-2 mt-1 mb-1">
-							<i class="fa fa-close"></i> Cancel
-						</a>
 					</div>
 				</form>
 			</div>
