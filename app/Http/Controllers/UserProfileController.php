@@ -182,6 +182,9 @@ class UserProfileController extends Controller
      */
     public function destroy(UserProfile $userProfile)
     {
-        //
+        $userProfile->delete();
+     
+        return redirect()->route('user_profiles.index')
+                        ->with('success','User deleted successfully');
     }
 }

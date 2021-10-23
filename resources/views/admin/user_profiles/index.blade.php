@@ -62,7 +62,11 @@
 										<div class="align-top">
 											<a class="btn btn-sm btn-success badge" href="{{ url('user_profiles/'.$user->id) }}/edit" type="button"><i class="fa fa-pencil"></i></a>
 											<a class="btn btn-sm btn-success badge" href="{{ url('user_profiles/'.$user->id) }}/show" type="button"><i class="fa fa-eye"></i></a>
-											<button class="btn btn-sm btn-danger badge" type="button"><i class="fa fa-trash"></i></button>
+											<form action="{{ route('user_profiles.destroy',$user->id) }}" method="POST">
+												@csrf
+	                    						@method('DELETE')
+	        									<button class="btn btn-sm btn-danger badge" type="submit"><i class="fa fa-trash"></i></button>
+	        								</form>
 										</div>
 									</td>
 								</tr>

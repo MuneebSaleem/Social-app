@@ -19,3 +19,5 @@ Route::resource('user_profiles', UserProfileController::class);
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('user_profiles/{userProfile}/show', 'App\Http\Controllers\UserProfileController@show');
