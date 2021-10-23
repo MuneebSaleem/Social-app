@@ -159,6 +159,7 @@
 		<script src="{{ asset('assets/plugins/input-mask/jquery.maskedinput.js') }}"></script>
 		<script src="{{ asset('assets/plugins/multipleselect/multiple-select.js') }}"></script>
 		<script src="{{ asset('assets/plugins/multipleselect/multi-select.js') }}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
 		<script src="{{ asset('assets/js/index1.js') }}"></script>
 		<script src="{{ asset('assets/js/custom.js') }}"></script>
 	
