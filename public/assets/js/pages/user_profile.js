@@ -57,7 +57,7 @@
                     }
                 }
             },
-            password_confirm: {
+            confirm_password: {
                 validators: {
                     notEmpty: {
                         message: ' Please enter Confirm password'
@@ -67,7 +67,58 @@
                         message: 'Confirm Password does not match'
                     }
                 }
-            }
+            },
+            phonenumber: {
+                validators:{
+                    notEmpty:{
+                        message: 'Please Enter Phone Number'
+                    }
+                }
+            },
+            role_id: {
+                validators:{
+                    notEmpty:{
+                        message: 'Please Select Role'
+                    }
+                },
+                required: true
+            },
+            country_id: {
+                validators:{
+                    notEmpty:{
+                        message: 'Please Select Country'
+                    }
+                },
+                required: true
+            },
+            province_id: {
+                validators:{
+                    notEmpty:{
+                        message: 'Please Select Province'
+                    }
+                },
+                required: true
+            },
+            experience_id: {
+                validators:{
+                    notEmpty:{
+                        message: 'Please Select Experience'
+                    }
+                },
+                required: true
+            },
+            profile_image: {
+                validators: {
+                    file: {
+                        extension: 'jpeg,png,jpg',
+                        type: 'image/jpeg,image/png, image/jpg',
+                        message: 'The selected file is not valid'
+                    },
+                    notEmpty:{
+                        message: 'Please Select Profile Image'
+                    }
+                }
+            },
         }
     });
 });

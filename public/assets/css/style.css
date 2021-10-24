@@ -24884,3 +24884,6 @@ body.search-show, body.sidebar-show {
 table td:last-child , table th:last-child {
 	display: block !important;
 }
+small.help-block {
+    color: red;
+}

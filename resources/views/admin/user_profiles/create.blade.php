@@ -94,6 +94,7 @@
 								<div class="form-group">
 									<label for="role_id">Role</label>
 									<select id="role_id" class="form-control" name="role_id">
+										<option value="">-- Select --</option>
 										<option value="1">Admin</option>
 										<option value="2">User</option>
 										<option value="3">Mentor</option>
@@ -107,8 +108,12 @@
 								<div class="form-group">
 									<label for="country_id">Country</label>
 									<select class="form-control" name="country_id" id="country_id">
-										<option value="1">Pakistan</option>
-										<option value="2">USA</option>
+										<option value="">-- Select --</option>
+										@forelse($countries as $country)
+										<option value="{{$country->id}}">{{"(".$country->country_code.") ".$country->name}}</option>
+										@empty
+										<option value="">No data found</option>
+										@endforelse
 									</select>
 								</div>
 							</div>
@@ -116,6 +121,7 @@
 								<div class="form-group">
 									<label for="province_id">Province</label>
 									<select class="form-control" name="province_id" id="province_id">
+										<option value="">-- Select --</option>
 										<option value="1">Karachi</option>
 										<option value="2">Islamabad</option>
 									</select>
@@ -125,6 +131,7 @@
 								<div class="form-group">
 									<label for="experience_id">Experience</label>
 									<select class="form-control" name="experience_id" id="experience_id">
+										<option value="">-- Select --</option>
 										<option value="1">0-1</option>
 										<option value="2">1-3</option>
 									</select>

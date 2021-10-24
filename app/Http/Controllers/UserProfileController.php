@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserProfile;
+use App\Models\Countries;
+
 use Illuminate\Http\Request;  
 use Auth;    
 
@@ -31,8 +33,10 @@ class UserProfileController extends Controller
      */
     public function create()
     {
+        $countries = Countries::get();
+        // dd($countries);
 
-        return view('admin.user_profiles.create');
+        return view('admin.user_profiles.create',compact('countries'));
     }
 
     /**
