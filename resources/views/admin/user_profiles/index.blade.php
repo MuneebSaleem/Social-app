@@ -19,7 +19,7 @@
 		</ol><!-- End breadcrumb -->
 		<div class="ml-auto">
 			<div class="input-group">
-				<a class="btn btn-success mt-sm-0 mr-2" href="{{ url('user_profiles/create') }}"><i class="fe fe-plus mr-1 mt-1"></i> Add New</a>
+				<a class="btn btn-success mt-sm-0 mr-2" href="{{ route('create') }}"><i class="fe fe-plus mr-1 mt-1"></i> Add New</a>
 			</div>
 		</div>
 	</div>

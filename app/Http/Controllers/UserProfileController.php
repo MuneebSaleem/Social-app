@@ -11,7 +11,6 @@ use Auth;
 
 class UserProfileController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -193,11 +192,9 @@ class UserProfileController extends Controller
                         ->with('success','User deleted successfully');
     }
 
-    // public function get_region()
-    // {
-    //     echo "Sadasda";die;
-    //     $countries = Countries::get();
-    //     $get_region = Regions::where('country_id',$country_id);
-    //     echo $get_region;
-    // }
+    public function get_region()
+    {
+        echo "string"; die();
+        return view('admin.user_profiles.show',compact('userProfile'));
+    }
 }
