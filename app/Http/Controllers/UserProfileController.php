@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserProfile;
 use App\Models\Countries;
+use App\Models\Regions;
 
 use Illuminate\Http\Request;  
 use Auth;    
@@ -191,4 +192,12 @@ class UserProfileController extends Controller
         return redirect()->route('user_profiles.index')
                         ->with('success','User deleted successfully');
     }
+
+    // public function get_region()
+    // {
+    //     echo "Sadasda";die;
+    //     $countries = Countries::get();
+    //     $get_region = Regions::where('country_id',$country_id);
+    //     echo $get_region;
+    // }
 }
