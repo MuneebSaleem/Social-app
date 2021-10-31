@@ -32,5 +32,6 @@ Route::prefix("user_profiles")->group(function(){
     Route::get('{userProfile}/edit', 'App\Http\Controllers\UserProfileController@edit')->name('user_profiles.edit');
     Route::post('{userProfile}/update', 'App\Http\Controllers\UserProfileController@update')->name('user_profiles.update');
     Route::delete('{userProfile}/delete', 'App\Http\Controllers\UserProfileController@destroy')->name('user_profiles.destroy');
-    Route::get('get_region', 'App\Http\Controllers\UserProfileController@get_region')->name('user_profiles.get_region');
+    Route::post('get_region', 'App\Http\Controllers\UserProfileController@get_region')->name('user_profiles.get_region');
+
 });

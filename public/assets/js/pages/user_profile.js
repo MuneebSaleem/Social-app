@@ -1,5 +1,33 @@
     $(document).ready(function(){
 
+        $("#country_id").change(function(){
+
+            var id=$(this).val();
+            $.ajax({
+                url: GETREGION,
+                type: 'POST',
+                dataType: 'json',
+                data: {_token: CSRFTOKEN, country_id:id},
+            })
+            .done(function(response) {
+                $("#province_id").append('<option>--Select Region--</option>');
+                if(response!=null)
+                {
+                  $.each(response,function(key,value){
+                        $('#province_id').append("<option value="+value.id+">"+value.name+"</option>");
+                    });
+                }
+                
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+            
+        });
+
         $("#user_profile_form").bootstrapValidator({
         fields: {
             

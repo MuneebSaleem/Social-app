@@ -192,9 +192,14 @@ class UserProfileController extends Controller
                         ->with('success','User deleted successfully');
     }
 
-    public function get_region()
+    public function get_region(Request $request)
     {
-        echo "string"; die();
-        return view('admin.user_profiles.show',compact('userProfile'));
+        $country_id = $request->input('country_id');
+        if($request->has('country_id'))
+        {
+            $get_region = Regions::where('country_id',$country_id)->get();
+            return response()->json($get_region);
+        }
+        return false;
     }
 }

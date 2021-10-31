@@ -110,7 +110,7 @@
 									<select class="form-control" name="country_id" id="country_id">
 										<option value="">-- Select --</option>
 										@forelse($countries as $country)
-										<option value="{{$country->id}}">{{"(".$country->country_code.") ".$country->name}}</option>
+										<option value="{{$country->id}}">{{$country->country_code."(".$country->code.")"}}</option>
 										@empty
 										<option value="">No data found</option>
 										@endforelse
@@ -121,9 +121,6 @@
 								<div class="form-group">
 									<label for="province_id">Province</label>
 									<select class="form-control" name="province_id" id="province_id">
-										<option value="">-- Select --</option>
-										<option value="1">Karachi</option>
-										<option value="2">Islamabad</option>
 									</select>
 								</div>
 							</div>
@@ -175,5 +172,9 @@
 <!-- End app-content-->
 @endsection
 @section('script_files')
+<script type="text/javascript">
+	var GETREGION = "{{ route('user_profiles.get_region') }}"; // for region
+    var CSRFTOKEN = "{{ csrf_token() }}";
+</script>
 <script src="{{ asset('assets/js/pages/user_profile.js') }}"></script>
 @endsection
