@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/muneebsa/public_html/
+    - export DEPLOYPATH=/home/muneebsa/public_html/social_app/
     - /bin/cp -R * $DEPLOYPATH
